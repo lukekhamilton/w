@@ -2,21 +2,31 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"os/exec"
+
+	git "gopkg.in/src-d/go-git.v4"
 )
 
 func main() {
 
-	cmd := os.Args[1:]
-	fmt.Println(cmd)
+	// cmd := os.Args[1:]
+	// fmt.Println(cmd)
 
-	out, err := exec.Command(cmd[0], cmd[1:]...).Output()
-
-	// cmd := GetCommand()
-	// fmt.Println("cmd: ", cmd)
 	// out, err := exec.Command(cmd[0], cmd[1:]...).Output()
-	fmt.Printf("out: %s", out)
+
+	// // cmd := GetCommand()
+	// // fmt.Println("cmd: ", cmd)
+	// // out, err := exec.Command(cmd[0], cmd[1:]...).Output()
+	// fmt.Printf("out: %s", out)
+	// fmt.Println("err: ", err)
+
+	// Info("git clone https://github.com/src-d/go-git")
+
+	_, err := git.PlainClone("./go-git", false, &git.CloneOptions{
+		URL: "https://github.com/src-d/go-git",
+		// Progress: os.Stdout,
+	})
+
+	// CheckIfError(err)
 	fmt.Println("err: ", err)
 }
 
